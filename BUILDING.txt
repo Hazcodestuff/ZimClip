@@ -1,0 +1,7 @@
+Build notes
+Target: x86_64-pc-windows-gnu, release profile, Rust with the windows-gnu target and mingw-w64 (posix threads).
+Command: RUSTFLAGS="-C target-feature=+crt-static" cargo build --release --target x86_64-pc-windows-gnu
+Add --remap-path-prefix to RUSTFLAGS if you want local build paths kept out of the binary.
+Host tests (layout_plan, nav, settings_bundle, ctl_ids, favourites, clip_date, catalog): cargo test --release
+Windows-only modules (library_view, replay_design, ui) are checked only by the Windows build.
+Dependency licenses: dependency-licenses/. Project license: LICENSE.
