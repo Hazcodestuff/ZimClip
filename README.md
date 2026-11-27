@@ -25,6 +25,12 @@ The replay workbench, with preview, trim handles and separate audio tracks:
 
 </details>
 
+## RAM usage, according to science
+
+![Community-grade benchmark: Task Manager showing ZimClip.exe using 54.2 MB of RAM, highlighted with a giant red arrow](docs/screenshots/ram-usage-meme.jpg)
+
+Fine print: that is one Task Manager snapshot of `ZimClip.exe` at 54.2 MB. The capture engine runs as a separate helper (`capture-engine.exe`, 42.6 MB in the same snapshot), so this is a per-process peek on one PC, not the whole app's total or a guaranteed figure. Still pretty light for an always-on replay buffer.
+
 ## Download
 
 Download:
