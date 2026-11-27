@@ -6,6 +6,25 @@ ZimClip is a lightweight instant-replay clipper for Windows. It keeps a rolling 
 
 Status: 0.22.6, Windows x64. Not code-signed, so Windows SmartScreen may warn on first run.
 
+## Screenshots
+
+The main window, with the 30 second replay buffer running and saved clips ready:
+
+![Main library showing active 30 second replay buffer and saved clips](docs/screenshots/home.jpg)
+
+The replay workbench, with preview, trim handles and separate audio tracks:
+
+![Replay workbench with preview, trim handles and separate audio tracks](docs/screenshots/editor.jpg)
+
+<details>
+<summary>Settings (rendered under Wine, so fonts and window chrome may look slightly different on Windows)</summary>
+
+![Appearance settings with themes and accent colours](docs/screenshots/settings-appearance.png)
+
+![Capture settings with resolution, frame rate, replay length and audio controls](docs/screenshots/settings-capture.png)
+
+</details>
+
 ## Download
 
 Download:
