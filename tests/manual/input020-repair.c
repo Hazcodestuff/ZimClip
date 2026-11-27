@@ -1,0 +1,4 @@
+#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc,char**argv){HWND h=FindWindowW(L"ZimClipWindow",0);int id=argc>1?atoi(argv[1]):76;HWND c=GetDlgItem(h,id);if(id==1||id==76||id==100){DWORD tid=GetWindowThreadProcessId(h,0);AttachThreadInput(GetCurrentThreadId(),tid,TRUE);SetForegroundWindow(h);SetFocus(c);INPUT k={0};k.type=INPUT_KEYBOARD;k.ki.wVk=VK_RETURN;SendInput(1,&k,sizeof(k));k.ki.dwFlags=KEYEVENTF_KEYUP;SendInput(1,&k,sizeof(k));}else{RECT r;GetWindowRect(c,&r);POINT pt={r.right-15,r.top+18};printf("id=%d target=%p hit=%p rect=%ld,%ld-%ld,%ld\n",id,c,WindowFromPoint(pt),r.left,r.top,r.right,r.bottom);SetCursorPos(pt.x,pt.y);INPUT m={0};m.type=INPUT_MOUSE;m.mi.dwFlags=MOUSEEVENTF_LEFTDOWN;SendInput(1,&m,sizeof(m));m.mi.dwFlags=MOUSEEVENTF_LEFTUP;SendInput(1,&m,sizeof(m));Sleep(200);printf("id=%d dropped=%lld\n",id,(long long)SendMessageW(c,CB_GETDROPPEDSTATE,0,0));SendMessageW(c,CB_SHOWDROPDOWN,0,0);}return 0;}

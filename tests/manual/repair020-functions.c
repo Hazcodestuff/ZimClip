@@ -1,0 +1,4 @@
+#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc,char**argv){int n=atoi(argv[1]);HWND h=FindWindowW(L"ZimClipTagManager",0);if(n==0){SendMessageW(GetDlgItem(h,403),LB_SETCURSEL,1,0);SendMessageW(h,WM_COMMAND,MAKEWPARAM(403,LBN_SELCHANGE),(LPARAM)GetDlgItem(h,403));SendMessageW(h,WM_COMMAND,414,0);SendMessageW(h,WM_COMMAND,401,0);}if(n==1){SendMessageW(h,WM_COMMAND,405,0);SetWindowTextW(GetDlgItem(h,400),L"RepairNew");SendMessageW(h,WM_COMMAND,416,0);SendMessageW(h,WM_COMMAND,401,0);}if(n==2){SendMessageW(h,WM_COMMAND,402,0);}if(n==3){h=FindWindowW(L"ZimClipWindow",0);HWND c=GetDlgItem(h,100);SendMessageW(c,WM_CONTEXTMENU,(WPARAM)c,MAKELPARAM(-1,-1));Sleep(300);keybd_event(VK_DOWN,0,0,0);keybd_event(VK_DOWN,0,KEYEVENTF_KEYUP,0);keybd_event(VK_DOWN,0,0,0);keybd_event(VK_DOWN,0,KEYEVENTF_KEYUP,0);keybd_event(VK_RIGHT,0,0,0);keybd_event(VK_RIGHT,0,KEYEVENTF_KEYUP,0);}return 0;}

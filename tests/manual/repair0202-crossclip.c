@@ -1,0 +1,4 @@
+#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc,char**argv){int n=atoi(argv[1]);HWND main=FindWindowW(L"ZimClipWindow",0),e=FindWindowW(L"ZimClipEditor",0),d=FindWindowW(L"ZimClipMixer",0);if(n==0){SetWindowTextW(GetDlgItem(main,76),L"audio-separate-fixture");Sleep(600);PostMessageW(main,WM_COMMAND,100,0);}if(n==1){printf("mute-all mixer=%p\n",d);for(int i=0;i<3;i++)SendMessageW(GetDlgItem(d,430+i),WM_USER+5,1,0);PostMessageW(d,WM_COMMAND,401,0);}if(n==2){printf("mixer=%p editor=%p\n",d,e);if(!d)return 8;for(int i=0;i<3;i++){int v=SendMessageW(GetDlgItem(d,430+i),WM_USER,0,0);printf("new clip source=%d gain=%d\n",i,v);if(v!=100)return 3;}}if(n==3){PostMessageW(d,WM_COMMAND,402,0);}if(n==4){SendMessageW(GetDlgItem(e,216),BM_CLICK,0,0);wchar_t text[100];GetWindowTextW(GetDlgItem(e,216),text,100);printf("toggle=%ls\n",text);}return 0;}

@@ -1,0 +1,5 @@
+#include <windows.h>
+#include <psapi.h>
+#include <stdio.h>
+unsigned long long time64(FILETIME f){ULARGE_INTEGER v;v.LowPart=f.dwLowDateTime;v.HighPart=f.dwHighDateTime;return v.QuadPart;}
+int main(){HWND h=FindWindowW(L"ZimClipWindow",0);DWORD pid;GetWindowThreadProcessId(h,&pid);HANDLE p=OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ,0,pid);FILETIME c,e,k,u,k2,u2;PROCESS_MEMORY_COUNTERS m={sizeof(m)};GetProcessMemoryInfo(p,&m,sizeof(m));GetProcessTimes(p,&c,&e,&k,&u);DWORD g=GetGuiResources(p,0),users=GetGuiResources(p,1);printf("start pid=%lu working_set=%llu private_pagefile=%llu GDI=%lu USER=%lu\n",pid,(unsigned long long)m.WorkingSetSize,(unsigned long long)m.PagefileUsage,g,users);Sleep(10000);GetProcessTimes(p,&c,&e,&k2,&u2);GetProcessMemoryInfo(p,&m,sizeof(m));printf("10sec controller_cpu_ms=%.1f working_set=%llu GDI=%lu USER=%lu\n",(time64(k2)+time64(u2)-time64(k)-time64(u))/10000.0,(unsigned long long)m.WorkingSetSize,GetGuiResources(p,0),GetGuiResources(p,1));CloseHandle(p);return 0;}

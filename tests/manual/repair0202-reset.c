@@ -1,0 +1,3 @@
+#include <windows.h>
+#include <stdio.h>
+int main(int argc,char**argv){HWND h=FindWindowW(L"ZimClipMixer",0);if(!h)return 2;int values[]={0,67,200};for(int i=0;i<3;i++){HWND c=GetDlgItem(h,430+i);SendMessageW(c,WM_USER+5,1,values[i]);SendMessageW(h,WM_HSCROLL,0,(LPARAM)c);}for(int i=0;i<3;i++){SendMessageW(GetDlgItem(h,450+i),BM_CLICK,0,0);for(int j=0;j<3;j++){int expected=j<=i?100:values[j];int actual=SendMessageW(GetDlgItem(h,430+j),WM_USER,0,0);wchar_t text[80];GetWindowTextW(GetDlgItem(h,440+j),text,80);printf("reset=%d slider=%d position=%d expected=%d label=%ls\n",i,j,actual,expected,text);if(actual!=expected)return 4;}}return 0;}

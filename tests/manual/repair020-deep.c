@@ -1,0 +1,4 @@
+#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc,char**argv){int n=atoi(argv[1]);HWND h=FindWindowW(L"ZimClipWindow",0);DWORD tid=GetWindowThreadProcessId(h,0);AttachThreadInput(GetCurrentThreadId(),tid,TRUE);if(n<5){HWND c=GetDlgItem(h,n==0?76:n==1?77:n==2?78:n==3?36:1);SetForegroundWindow(h);SetFocus(c);printf("focus id=%d\n",GetDlgCtrlID(GetFocus()));INPUT k={0};k.type=INPUT_KEYBOARD;k.ki.wVk=VK_RETURN;SendInput(1,&k,sizeof(k));k.ki.dwFlags=KEYEVENTF_KEYUP;SendInput(1,&k,sizeof(k));}if(n==5){HWND d=FindWindowW(L"ZimClipTagManager",0);SendMessageW(GetDlgItem(d,403),LB_SETCURSEL,1,0);SendMessageW(d,WM_COMMAND,MAKEWPARAM(403,LBN_SELCHANGE),(LPARAM)GetDlgItem(d,403));}if(n==6){HWND d=FindWindowW(L"ZimClipTagManager",0);SendMessageW(d,WM_COMMAND,402,0);}if(n==7){HWND d=FindWindowW(L"ZimClipFileDialog",0);SetWindowTextW(GetDlgItem(d,403),L"discord, discordptb");SendMessageW(d,WM_COMMAND,401,0);}return 0;}
